@@ -1,0 +1,73 @@
+v.0.189
+Now Meerkat works for BWA mem aligned genomes.
+Fixed a bug in meerkat2vcf.pl, del and tandem_dup have incorrect orientations 
+in the old version.
+Modified somatic_sv.pl and discon.pl to improve performance and removed -w 
+option in both.
+
+v.0.188
+Allow longer rg string.
+Fixed a bug in somatic_sv.pl that would give del event type for del_ins and 
+call mechanism wrong for these cases
+Meerkat works for whole exome sequencing data. Added filter_fusions.pl for WES
+SV calls.
+
+v.0.187
+Improved bamreader (used in pre_process.pl) to reduce memory usage by 70%, 
+results are exactly the same as previous versions.
+Allow character "'" in rg name.
+
+v.0.186
+Developed a tool discon.pl to provide number of discordant and concordant read
+pairs across a breakpoint, such info can be used to calculate allele frequency.
+Modified somatic_sv.pl to filter by allele frequency.
+Fixed a bug in somatic_sv.pl to call unmapped reads as discordant pairs in some
+rare cases.
+Fixed a bug in fusions.pl to give negative value for homology in del_ins.
+
+v.0.185
+Developed a tool primers.pl to design PCR primers for validation.
+Fixed a bug in fusions.pl that breakpoints in inssu events are flipped.
+Improved somatic_sv.pl for 6-8x coverage genomes.
+
+v.0.184
+Improved somatic_sv.pl to handle long tail of insert size distribution
+properly.
+
+v.0.183
+Removed dependency of PERL package biosamtools.
+Fixed a bug in meerkat.pl that supporting split reads for deletions were
+counted twice in previous versions.
+Fixed a bug in somatic_sv.pl that some SVs are not properly filtered.
+Updated fusions.pl to improve the fusion annotation, provide 5' and 3' fusion
+partners.
+
+v.0.182
+Modified meerkat.pl to count realigned read pairs only once if they come from
+the same read pair. It will give different number of supporting discordant read
+pairs than previous versions. In previous versions, an unmapped read will be 
+cut into two parts and paired with the mapped mate to align to the reference 
+genome. Occasionally, both pairs will be discordant and counted twice. See step
+1 and 2 of the Meerkat workflow figure at
+http://compbio.med.harvard.edu/Meerkat/.
+
+Fixed a bug in fusions.pl not outputing homology for inversions.
+
+v.0.181
+Fixed a bug in pre_process.pl for calling samtools.
+
+v.0.180
+Fixed a bug in meerkat.pl with scluster error.
+
+v.0.179
+Fixed a bug in filtering SVs in simple repeats and satellite repeats.
+
+v.0.178
+Removed dependency of mkfifo.
+
+v.0.177
+Added an option G to specify minimum mapping quality for reads to be used.
+
+v.0.176
+Two useful scripts provided: meerkat2vcf.pl to convert Meerkat output to VCF
+format and fusions.pl to annotate fusion events into a uniformed format.
